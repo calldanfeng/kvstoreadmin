@@ -1,0 +1,40 @@
+<div id="dataSourceConfigModal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Data Source Configuration
+    </div>
+    <div class="content" style="min-height: 520px;">
+        <div class="ui red message hidden" data-bind="component: {name: 'Message', params:{message: connectionErrorMessage}}">
+
+        </div>
+        <form class="ui form" data-bind="css:{loading: fetching}">
+            <div class="ui field">
+            <label>Data Source Type</label>
+            <select class="ui dropdown" data-bind="component: {name: 'DropDown', params: { options: availableProviders, value: dataSourceType }}">
+            </select>
+            </div>
+            <div data-bind="component: {name: dataSourceType() + 'ConfigForm', params: {dataSourceConfig: dataSourceConfig, frame: $data}}">
+
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <button class="ui button"
+                data-bind="click: $data.onClose">
+            Cancel
+        </button>
+        <button id="pingButton"
+                name="connect"
+                class="ui blue button"
+                data-content="Please ping the server first."
+                data-bind="click: $data.onPing, disable: fetching">
+            Ping
+        </button>
+        <button id="saveDataSourceButton"
+                class="ui submit button"
+                data-bind="click: $data.onSave, css: {positive: connected()}">
+            Save
+            <!--<i class="checkmark icon"></i>-->
+        </button>
+    </div>
+</div>

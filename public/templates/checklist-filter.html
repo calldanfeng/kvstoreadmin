@@ -1,0 +1,80 @@
+<button class="ui basic right icon button"
+        data-bind="click: popup,
+                   css: {blue: selected().length > 0 && selected().length !== all().length}">
+    <span data-bind="text: title"></span>
+    <i class="dropdown icon"></i>
+</button>
+<div class="ui basic checklist popup">
+    <div>
+        <div class="ui fluid left icon small input">
+            <i class="filter icon"></i>
+            <input data-bind="textInput: filter"/>
+            <i class="remove icon" data-bind="visible: filter, click: filter.bind(this, '')"></i>
+        </div>
+    </div>
+    <div class="checklist">
+        <div class="ui accordion">
+            <div class="title" data-bind="css: {active: selectedExpanded}">
+                <i class="dropdown icon" data-bind="click: selectedExpanded.bind(this, !selectedExpanded())"></i>
+                <div class="ui checkbox">
+                    <input type="checkbox"
+                           data-bind="checked: selected().length > 0,
+                                      event: {change: deselectAll},
+                                      attr: {id: 'unchkAllSelected' + $component.modelIndex}"/>
+                    <label data-bind="attr: {for: 'unchkAllSelected' + $component.modelIndex}">Selected Columns</label>
+                </div>
+            </div>
+            <div class="content" data-bind="css: {active: selectedExpanded}">
+                <div data-bind="foreach: selected">
+                    <div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" checked="checked"
+                                   data-bind="event: {change: $component.deselect},
+                                              attr: {id: 'unchkSelected' + $component.modelIndex + '-' + $index()}"/>
+                            <label data-bind="attr: {for: 'unchkSelected' + $component.modelIndex + '-' + $index()}">
+                                <span data-bind="text: $data[$component.displayAttr]"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title" data-bind="css: {active: candidateExpanded}">
+                <i class="dropdown icon" data-bind="click: candidateExpanded.bind(this, !candidateExpanded())"></i>
+                <div class="ui checkbox">
+                    <input type="checkbox"
+                           data-bind="checked: selected().length === all().length && all().length > 0,
+                                      event: {change: selectAll()},
+                                      attr: {id: 'chkAllCandidate' + $component.modelIndex}"/>
+                    <label data-bind="attr: {for: 'chkAllCandidate' + $component.modelIndex} ">
+                        <span data-bind="text: filter() ? 'Filtered' : 'All'"></span>
+                        Unselected Columns
+                    </label>
+                </div>
+            </div>
+            <div class="content" data-bind="css: {active: candidateExpanded}">
+                <div data-bind="foreach: candidates">
+                    <div>
+                        <div class="ui checkbox">
+                            <input type="checkbox"
+                                   data-bind="event: {change: $component.candidateChecked},
+                                              attr: {id: 'chkCandidate' + $component.modelIndex + '-' + $index()}"/>
+                            <label data-bind="attr: {for: 'chkCandidate' + $component.modelIndex + '-' + $index()}">
+                                <!--ko if: $component.filter-->
+                                <!--ko with: $component.highlight($data)-->
+                                <span data-bind="text: start"></span><span
+                                class="ui highlighted" data-bind="text: mid"></span><span
+                                data-bind="text: end"></span>
+                                <!--/ko-->
+                                <!--/ko-->
+
+                                <!--ko ifnot: $component.filter-->
+                                <span data-bind="text: $data[$component.displayAttr]"></span>
+                                <!--/ko-->
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

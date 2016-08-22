@@ -1,0 +1,38 @@
+<div id="dataSourceEditPopup" class="ui flowing basic popup">
+    <table class="ui single line very basic table">
+        <tbody id="dataSourceConfigRows" data-bind="foreach: dataSourceConfigList">
+        <tr>
+            <td>
+                <label class="ui large label"
+                       data-bind="text: name"></label>
+            </td>
+            <td>
+                <div class="ui tiny buttons">
+                    <button class="ui positive icon button"
+                            data-bind="click: $root.editDataSource">
+                        <i class="configure icon"></i>
+                    </button>
+                    <div class="or"></div>
+                    <button class="ui negative icon button"
+                            data-bind="click: $root.removeDataSource">
+                        <i class="remove icon"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <button id="addDataSourceButton"
+                        class="tiny ui fluid positive button"
+                        data-bind="click: $root.addDataSource, disable: dataSourceConfigList().length >= 5">
+                    <i class="plus icon"></i>
+                    Add Data Source
+                    <span data-bind="visible: dataSourceConfigList().length >= 5">(5 Items at Most)</span>
+                </button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

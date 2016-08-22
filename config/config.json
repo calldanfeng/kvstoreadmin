@@ -1,0 +1,83 @@
+{
+    "express": {
+        "view cache": false,
+        "view engine": "js",
+        "views": "path:./.build"
+    },
+    "view engines": {
+        "js": {
+            "module": "makara",
+            "renderer": {
+                "method": "js",
+                "arguments": [
+                    {
+                        "cache": true,
+                        "helpers": "config:dust.helpers"
+                    }
+                ]
+            }
+        }
+    },
+    "dust": {
+        "helpers": [
+            "dust-makara-helpers"
+        ]
+    },
+    "i18n": {
+        "contentPath": "path:./locales",
+        "fallback": "en-US"
+    },
+    "specialization": {
+    },
+    "middleware": {
+        "appsec": {
+            "enabled": true,
+            "priority": 110,
+            "module": {
+                "name": "lusca",
+                "arguments": [
+                    {
+                        "csrf": false,
+                        "xssProtection": false
+                    }
+                ]
+            }
+        },
+        "static": {
+            "module": {
+                "arguments": [
+                    "path:./.build"
+                ]
+            }
+        },
+        "makara": {
+            "priority": 100,
+            "enabled": true,
+            "module": {
+                "name": "makara",
+                "arguments": [
+                    {
+                        "i18n": "config:i18n",
+                        "specialization": "config:specialization"
+                    }
+                ]
+            }
+        },
+        "router": {
+            "module": {
+                "arguments": [
+                    {
+                        "directory": "path:./controllers"
+                    }
+                ]
+            }
+        },
+        "serverError": {
+            "enabled": true,
+            "priority": 140,
+            "module": {
+                "name": "path:./lib/errorHandler"
+            }
+        }
+    }
+}

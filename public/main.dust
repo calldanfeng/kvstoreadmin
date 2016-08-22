@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta id="availableProviders" data-available-providers="{providersJSON}"/>
+    <title>Risk Data Tool</title>
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16"/>
+    <link rel="stylesheet" type="text/css" href="components/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <script src="components/requirejs/require.js"></script>
+    <script src="boot.js"></script>
+    {?isDev}
+        {#providers}
+            <script src="{name}/registration.js"></script>
+        {/providers}
+    {/isDev}
+</head>
+<body style="min-width: 1260px; min-height: 650px; overflow: auto;">
+<div class="ui vertical box">
+    <div id="brandingBar" class="side">
+        <div class="ui borderless menu">
+            <div class="header item">
+                <h5 class="ui blue header">
+                    <i class="paypal icon"></i>
+                    <span class="content">Risk Data Tool v1.1</span>
+                </h5>
+            </div>
+            <div class="right menu" id="headerBarRightMenu">
+            </div>
+        </div>
+    </div>
+    <div class="fitted">
+        <div class="content">
+            <div class="ui horizontal box">
+            <div id="collapsedDataSourcePanel" class="ui visible sidebar vertically padded side"
+                 data-bind="visible: collapsed">
+                <button class="ui right attached icon button" data-bind="click: expand">
+                    <i class="chevron right icon"></i>
+                </button>
+            </div>
+            <div id="expandedDataSourcePanel" class="four wide side"
+                 data-bind="visible: !collapsed()">
+                <div class="content" id="dataSourcePanel">
+                </div>
+            </div>
+            <div class="fitted">
+                <div class="content">
+                    <div id="queryTabPanel" class="ui vertical box"
+                         style="display: none" data-bind="visible: queryTabs">
+                        <div class="padded side" style="overflow-x: auto">
+                            <div id="queryTabs" class="ui pointing secondary menu" data-bind="foreach: queryTabs">
+                                <a class="item"
+                                   data-bind="css: {active: $data === $root.activeQuery()},
+                                      click: $root.selectQuery,
+                                      event: {dblclick: editTitleMode.bind(this, true)}">
+                                    <!--ko ifnot: editTitleMode-->
+                                    <span data-bind="text: title"></span>
+                                    <i class="small remove icon" data-bind="click: $root.removeQuery"></i>
+                                    <!--/ko-->
+                                    <!--ko if: editTitleMode-->
+                                    <input data-bind="textInput: title,
+                                              event: {
+                                                  keypress: function(d, e) {(e.which === 13 || e.keyCode === 13) && editTitleMode(false); return true;}
+                                              },
+                                              hasFocus: editTitleMode"/>
+                                    <!--/ko-->
+                                </a>
+                            </div>
+                        </div>
+                        <!--ko foreach: queryTabs-->
+                        <!--ko component: { name: $data.type + 'DataQueryPanel', params: {path: path} }-->
+                        <!--/ko-->
+                        <!--/ko-->
+                        <!--ko if: queryTabs().length === 0-->
+                        <div class="ui basic padded segment">
+                            <div class="ui message">
+                                <div class="header">
+                                    You don't have any open queries.
+                                </div>
+                                <h4>
+                                    <i class="pointing left icon"></i>
+                                    Please click on a set name in the left data source panel to open a query tab.
+                                </h4>
+                            </div>
+                        </div>
+                        <!--/ko-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

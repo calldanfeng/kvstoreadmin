@@ -1,0 +1,9 @@
+{
+    "name": "kvstoreadmin-aerospike-provider"
+// TODO uncomment these line of codes when aerospike provider is ready.,
+//    "provider-info": {
+//        "name": "aerospike",
+//        "title": "AeroSpike",
+//        "order": 1
+//    }
+}

@@ -1,0 +1,231 @@
+/*
+Should include semantic css first
+*/
+.ui.box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+}
+
+.ui[class*='horizontal box'] {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.ui[class*='vertical box'] {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.ui.box > .side {
+    position: relative;
+}
+
+.ui.box > .fitted {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*overflow:hidden;*/
+    position: relative;
+}
+
+.ui.box.loading,
+.ui.box > .side.loading:before,
+.ui.box > .fitted.loading:before {
+    position: absolute;
+    content: '';
+    top: 0%;
+    left: 0%;
+    background: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+    border-radius: 0.28571429rem;
+    z-index: 100;
+}
+
+.ui.box.loading,
+.ui.box > .side.loading:after,
+.ui.box > .fitted.loading:after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    margin: -1.5em 0em 0em -1.5em;
+    width: 3em;
+    height: 3em;
+    -webkit-animation: segment-spin 0.6s linear;
+    animation: segment-spin 0.6s linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    border-radius: 500rem;
+    border-color: #767676 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width: 0.2em;
+    box-shadow: 0px 0px 0px 1px transparent;
+    visibility: visible;
+    z-index: 101;
+}
+
+.ui.box > .side > .content, .ui.box > .fitted > .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ui.box > .side > .scrollable.content, .ui.box > .fitted > .scrollable.content {
+    overflow: auto;
+}
+
+.ui.box > .side > .scrollable.content.loading, .ui.box > .fitted > .scrollable.content.loading {
+    overflow: hidden;
+}
+
+.ui.box > * > *[class*='padded content'],
+.ui.box > * > *[class*='padded scrollable content'],
+.ui.box > *[class*='padded fitted'],
+.ui.box > *[class*='padded side'] {
+    padding: 1rem;
+}
+
+.ui.box > * > *[class*='vertically padded content'],
+.ui.box > * > *[class*='vertically padded scrollable content'],
+.ui.box > *[class*='vertically padded side'] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.side[class*="one wide"] {
+    width: 6.25% !important;
+}
+
+.side[class*="two wide"] {
+    width: 12.5% !important;
+}
+
+.side[class*="three wide"] {
+    width: 18.75% !important;
+}
+
+.side[class*="four wide"] {
+    width: 25% !important;
+}
+
+.side[class*="five wide"] {
+    width: 31.25% !important;
+}
+
+.side[class*="six wide"] {
+    width: 37.5% !important;
+}
+
+.side[class*="seven wide"] {
+    width: 43.75% !important;
+}
+
+.side[class*="eight wide"] {
+    width: 50% !important;
+}
+
+.side[class*="nine wide"] {
+    width: 56.25% !important;
+}
+
+.side[class*="ten wide"] {
+    width: 62.5% !important;
+}
+
+.side[class*="eleven wide"] {
+    width: 68.75% !important;
+}
+
+.side[class*="twelve wide"] {
+    width: 75% !important;
+}
+
+.side[class*="thirteen wide"] {
+    width: 81.25% !important;
+}
+
+.side[class*="fourteen wide"] {
+    width: 87.5% !important;
+}
+
+.side[class*="fifteen wide"] {
+    width: 93.75% !important;
+}
+
+.side[class*="sixteen wide"] {
+    width: 100% !important;
+}
+
+.ui.highlighted {
+    background-color: yellow;
+}
+
+.black.link {
+    color: #27292a;
+}
+
+.collapsible-cell {
+    line-height: 1.2em;
+    overflow: visible;
+    margin: 0.5em 0;
+}
+
+.collapsible-cell.collapsed {
+    overflow: hidden;
+    max-width: 500px;
+    text-overflow: ellipsis;
+}
+
+.blue.text {
+    color: #2185d0
+}
+
+.checklist.popup {
+    height: 350px;
+    min-width: 267px;
+}
+.checklist.popup .accordion {
+    overflow: visible;
+}
+.checklist.popup .checklist{
+    margin-top: 2px;
+    min-width: 250px;
+    max-width: 400px;
+    height: 300px;
+    overflow: auto;
+}
+
+.checklist.popup label {
+    white-space: nowrap;
+}
+
+.checklist.popup .title {
+    white-space: nowrap;
+}
+
+.ui.icon.input>i.remove.icon {
+    right: 0;
+    margin-left: auto;
+    cursor: pointer;
+    left: initial;
+    pointer-events: auto;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+wbr:after { content: "\00200B"; }

@@ -1,0 +1,24 @@
+<div class="ui form" data-bind="if: target">
+    <textarea data-bind="
+                hasFocus: target(),
+                value: value,
+                style: {
+                    padding: 0,
+                    height: height,
+                    width: width,
+                    'line-height': '1em',
+                    'min-height': '28px',
+                    'max-height': '400px',
+                    'min-width': '100px'
+    }"></textarea>
+    <div class="ui right floated tiny buttons">
+        <button class="ui grey icon button"
+                data-bind="click: discard">
+            <i class="undo icon"></i>
+        </button>
+        <button class="ui positive icon button"
+                data-bind="click: onSave">
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+.build
+.bower
+node_modules
+public/components
+.temp

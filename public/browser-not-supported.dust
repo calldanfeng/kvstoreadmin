@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser not supported </title>
+</head>
+<body style="background-image: url(images/browser-not-supported-back.png); background-repeat: repeat">
+<div style="background-color: white; margin: 200px; padding: 20px;">
+    <h3>
+        Sorry, Risk Data Tool will only work on the following browsers:
+    </h3>
+    <h4>
+        Chrome >= 43
+    </h4>
+    <h4>
+        IE >= 11
+    </h4>
+    <h4>
+        Firefox >= 45
+    </h4>
+    <h4>
+        Safari >= 9
+    </h4>
+    <h4>
+        Opera >= 39
+    </h4>
+    <h4>
+        MS Edge
+    </h4>
+</div>
+</body>
+</html>
